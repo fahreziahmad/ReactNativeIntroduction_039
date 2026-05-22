@@ -4,15 +4,25 @@ import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-nativ
 const form = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>ini halaman form loh yaaaa</Text>
+      <Text style={styles.title}>Silakan Login</Text>
+      
       <TextInput
-      placeholder='masukkan nama anda' 
-      placeholderTextColor="#999"
-      style={styles.textinput}
-      ></TextInput>
+        placeholder='Masukkan Username' 
+        placeholderTextColor="#999"
+        style={styles.textinput}
+      />
+      
+      <TextInput
+        placeholder='Masukkan Password' 
+        placeholderTextColor="#999"
+        style={styles.textinput}
+        secureTextEntry={true}
+      />
+
       <TouchableOpacity style={styles.button} activeOpacity={0.8}>
-        <Text style={styles.buttonText}>kirim</Text>
+        <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
+      
       <Link href="../" style={styles.link}>kembali ke halaman index</Link>
     </View>
   )
