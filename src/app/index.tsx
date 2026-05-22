@@ -1,23 +1,51 @@
-import { Link } from "expo-router";
+import { useState } from "react";
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
-import abra from "./abra";
+import { useRouter } from "expo-router";
 
 export default function Index() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const router = useRouter();
+
+  const handleLogin = () => {
+    // Navigate to dashboard and pass the username
+    router.push({
+      pathname: "/dashboard",
+      params: { username }
+    });
+  };
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>React Native Loh Yaaaa</Text>
-      <Link href="./form" style={styles.link}>ke halaman form</Link>
-      <Link href="./contoh" style={styles.link}>ke halaman contoh</Link>
-      <Link href="./abra" style={styles.link} >ke halaman abra</Link>
-      <Text style={styles.label}>ini form nama</Text>
-      <TextInput
-        placeholder="masukkan nama Anda"
-        placeholderTextColor="#999"
-        style={styles.textinput}
-      />
-      <TouchableOpacity style={styles.button} activeOpacity={0.8}>
-        <Text style={styles.buttonText}>kirim</Text>
-      </TouchableOpacity>
+      <View style={styles.header}>
+        <Text style={styles.title}>Selamat Datang</Text>
+        <Text style={styles.subtitle}>Silakan masuk ke akun Anda</Text>
+      </View>
+
+      <View style={styles.card}>
+        <Text style={styles.label}>Username / Email</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Masukkan username"
+          placeholderTextColor="#999"
+          value={username}
+          onChangeText={setUsername}
+        />
+
+        <Text style={styles.label}>Password</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Masukkan password"
+          placeholderTextColor="#999"
+          value={password}
+          onChangeText={setPassword}
+          secureTextEntry
+        />
+
+        <TouchableOpacity style={styles.button} activeOpacity={0.8} onPress={handleLogin}>
+          <Text style={styles.buttonText}>Login</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -25,59 +53,54 @@ export default function Index() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#f5f7fa",
-    gap: 16,
+    backgroundColor: "#f8f9fa",
     padding: 24,
+    justifyContent: "center",
+  },
+  header: {
+    marginBottom: 32,
   },
   title: {
-    fontSize: 24,
+    fontSize: 28,
     fontWeight: "bold",
-    color: "#1a1a1a",
+    color: "#1e3a8a", // Dark blue
     marginBottom: 8,
   },
-  link: {
-    color: "#007aff",
+  subtitle: {
     fontSize: 16,
-    textDecorationLine: "underline",
-    marginBottom: 8,
+    color: "#6b7280",
+  },
+  card: {
+    backgroundColor: "#ffffff",
+    borderRadius: 16,
+    padding: 24,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.05,
+    shadowRadius: 10,
+    elevation: 3,
   },
   label: {
-    fontSize: 16,
-    color: "#666",
-    alignSelf: "center",
+    fontSize: 14,
+    fontWeight: "bold",
+    color: "#1e3a8a",
+    marginBottom: 8,
+    marginTop: 16,
   },
-  textinput: {
-    borderWidth: 1,
-    borderColor: "#d1d5db",
-    backgroundColor: "#ffffff",
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-    borderRadius: 12,
-    width: 280,
+  input: {
+    borderBottomWidth: 1,
+    borderBottomColor: "#3b82f6", // Blue bottom border
     fontSize: 16,
     color: "#1f2937",
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.05,
-    shadowRadius: 2,
-    elevation: 2,
+    paddingVertical: 8,
+    marginBottom: 8,
   },
   button: {
-    backgroundColor: "#007aff",
-    paddingHorizontal: 24,
-    paddingVertical: 12,
+    backgroundColor: "#3b82f6",
     borderRadius: 12,
-    width: 280,
+    paddingVertical: 14,
     alignItems: "center",
-    justifyContent: "center",
-    shadowColor: "#007aff",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 6,
-    elevation: 4,
-    marginTop: 8,
+    marginTop: 32,
   },
   buttonText: {
     color: "#ffffff",
