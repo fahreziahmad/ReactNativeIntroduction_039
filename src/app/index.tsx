@@ -17,35 +17,47 @@ export default function Index() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.title}>Selamat Datang</Text>
-        <Text style={styles.subtitle}>Silakan masuk ke akun Anda</Text>
+      {/* Header index */}
+      <View style={styles.topHeader}>
+        <Text style={styles.topHeaderText}>index</Text>
       </View>
 
-      <View style={styles.card}>
-        <Text style={styles.label}>Username / Email</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Masukkan username"
-          placeholderTextColor="#999"
-          value={username}
-          onChangeText={setUsername}
-        />
+      <View style={styles.content}>
+        <View style={styles.header}>
+          <Text style={styles.title}>Selamat Datang</Text>
+          <Text style={styles.subtitle}>Silakan masuk ke akun Anda</Text>
+        </View>
 
-        <Text style={styles.label}>Password</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Masukkan password"
-          placeholderTextColor="#999"
-          value={password}
-          onChangeText={setPassword}
-          secureTextEntry
-        />
+        <View style={styles.card}>
+          <Text style={styles.label}>Username / Email</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Masukkan username"
+            placeholderTextColor="#999"
+            value={username}
+            onChangeText={setUsername}
+          />
 
-        <TouchableOpacity style={styles.button} activeOpacity={0.8} onPress={handleLogin}>
-          <Text style={styles.buttonText}>Login</Text>
-        </TouchableOpacity>
+          <Text style={styles.label}>Password</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Masukkan password"
+            placeholderTextColor="#999"
+            value={password}
+            onChangeText={setPassword}
+            secureTextEntry
+          />
+
+          <TouchableOpacity style={styles.button} activeOpacity={0.8} onPress={handleLogin}>
+            <Text style={styles.buttonText}>Login</Text>
+          </TouchableOpacity>
+        </View>
       </View>
+
+      {/* Floating Menu Button */}
+      <TouchableOpacity style={styles.floatingMenu}>
+        <Text style={styles.menuIcon}>≡</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -54,8 +66,24 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#f8f9fa",
-    padding: 24,
+  },
+  topHeader: {
+    paddingTop: 50, // For status bar space
+    paddingHorizontal: 24,
+    paddingBottom: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: "#eaeaea",
+    backgroundColor: "#ffffff",
+  },
+  topHeaderText: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "#333",
+  },
+  content: {
+    flex: 1,
     justifyContent: "center",
+    padding: 24,
   },
   header: {
     marginBottom: 32,
@@ -107,4 +135,24 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
   },
+  floatingMenu: {
+    position: 'absolute',
+    bottom: 30,
+    left: 20,
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    backgroundColor: '#ffffff',
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.1,
+    shadowRadius: 10,
+    elevation: 5,
+  },
+  menuIcon: {
+    fontSize: 30,
+    color: '#333',
+  }
 });
