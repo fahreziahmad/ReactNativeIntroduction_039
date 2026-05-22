@@ -1,19 +1,10 @@
 import { useState } from "react";
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
-import { useRouter } from "expo-router";
+import { Link } from "expo-router";
 
 export default function Index() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const router = useRouter();
-
-  const handleLogin = () => {
-    // Navigate to dashboard and pass the username
-    router.push({
-      pathname: "/dashboard",
-      params: { username }
-    });
-  };
 
   return (
     <View style={styles.container}>
@@ -48,9 +39,11 @@ export default function Index() {
             secureTextEntry
           />
 
-          <TouchableOpacity style={styles.button} activeOpacity={0.8} onPress={handleLogin}>
-            <Text style={styles.buttonText}>Login</Text>
-          </TouchableOpacity>
+          <Link href={{ pathname: "./dashboard", params: { username } }} asChild>
+            <TouchableOpacity style={styles.button} activeOpacity={0.8}>
+              <Text style={styles.buttonText}>Login</Text>
+            </TouchableOpacity>
+          </Link>
         </View>
       </View>
 
